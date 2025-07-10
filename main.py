@@ -1,7 +1,5 @@
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.runnables import Runnable
-from langchain_core.runnables import RunnablePassthrough
 import os
 
 # ----- 1. Load API keys from env vars -----
@@ -40,7 +38,7 @@ app_builder_chain = app_builder_llm | StrOutputParser()
 
 # ----- 3. Define routing logic -----
 
-def router_fn(input_text: str) -> Runnable:
+def router_fn(input_text: str):
     lower = input_text.lower()
 
     if "marketing" in lower:
@@ -54,15 +52,11 @@ def router_fn(input_text: str) -> Runnable:
     else:
         return marketing_chain  # fallback
 
-# ----- 4. Create the router chain -----
-
-router_chain = RunnablePassthrough() \
-    .bind(lambda x: router_fn(x)) \
-    .bind(lambda chain, x: chain.invoke(x))
-
-# ----- 5. Run -----
+# ----- 4. Run -----
 
 if __name__ == "__main__":
     user_input = input("Enter your prompt: ")
-    result = router_chain.invoke(user_input)
+    selected_chain = router_fn(user_input)
+    result = selected_chain.invoke(user_input)
     print("Response:", result)
+
