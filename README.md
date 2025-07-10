@@ -1,25 +1,28 @@
-# AI Agent Router
+File Structure:
+project/
+├── main.py          # FastAPI app entry point
+├── routes.py        # API endpoints
+├── models.py        # Request/response models
+├── config.py        # Agent configs and API keys
+├── ai_service.py    # AI processing logic
+├── requirements.txt # Dependencies
+└── .env            # Environment variables
+Setup:
 
-Multi-agent AI routing system with LangChain integration.
+Install dependencies: pip install -r requirements.txt
+Set up your .env file with API keys
+Run: python main.py
 
-## Setup
+Usage:
+bash# List agents
+curl http://localhost:8000/agents
 
-1. Clone the repository
-2. Install dependencies: `pip install -r requirements.txt`
-3. Copy `.env.example` to `.env` and add your API keys
-4. Run: `python main.py`
+# Chat with marketing agent
+curl -X POST http://localhost:8000/chat \
+  -H "Content-Type: application/json" \
+  -d '{"agent": "marketing", "prompt": "Create a campaign for a new app"}'
 
-## API Endpoints
-
-- `GET /` - Basic info
-- `GET /agents` - List available agents
-- `POST /chat` - Chat with agents
-- `GET /health` - Health check
-
-## Available Agents
-
-- **marketing** - Marketing campaigns and strategies
-- **crm** - Customer relationship management
-- **user_profile** - User behavior analysis
-- **app_builder** - Software development
-- **general** - General purpose assistant
+# Set API key
+curl -X POST http://localhost:8000/api-keys/openai \
+  -H "Content-Type: application/json" \
+  -d '"your_api_key_here"'
