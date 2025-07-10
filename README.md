@@ -1,28 +1,23 @@
-File Structure:
-project/
-├── main.py          # FastAPI app entry point
-├── routes.py        # API endpoints
-├── models.py        # Request/response models
-├── config.py        # Agent configs and API keys
-├── ai_service.py    # AI processing logic
-├── requirements.txt # Dependencies
-└── .env            # Environment variables
-Setup:
+# LangChain Router
 
-Install dependencies: pip install -r requirements.txt
-Set up your .env file with API keys
-Run: python main.py
+Simple router for multiple AI agents using OpenRouter and Google Gemini APIs.
 
-Usage:
-bash# List agents
-curl http://localhost:8000/agents
+## Setup
 
-# Chat with marketing agent
-curl -X POST http://localhost:8000/chat \
-  -H "Content-Type: application/json" \
-  -d '{"agent": "marketing", "prompt": "Create a campaign for a new app"}'
+1. Install dependencies:
 
-# Set API key
-curl -X POST http://localhost:8000/api-keys/openai \
-  -H "Content-Type: application/json" \
-  -d '"your_api_key_here"'
+```bash
+pip install -r requirements.txt
+Set env variables:
+
+bash
+Copy
+Edit
+export OPENROUTER_API_KEY="your_openrouter_key"
+export GOOGLE_API_KEY="your_google_api_key"
+Run:
+
+bash
+Copy
+Edit
+python main.py
