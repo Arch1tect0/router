@@ -1,12 +1,18 @@
 import asyncio
 from agents import AGENTS
+from router import route_input
 
 async def main():
-    print("Available agents:", list(AGENTS.keys()))
-    for agent_name in AGENTS:
-        print(f"\n🤖 Calling agent: {agent_name}")
-        result = await AGENTS[agent_name]("summer vacations")
-        print(result)
+    user_input = input("Enter your request: ")
+
+    agent_name = await route_input(user_input)
+
+    if agent_name:
+        print(f"✅ Routing to agent: {agent_name}")
+        result = await AGENTS[agent_name](user_input)
+        print(f"Result: {result}")
+    else:
+        print("❌ Sorry, no suitable agent found.")
 
 if __name__ == "__main__":
     asyncio.run(main())
