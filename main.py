@@ -1,6 +1,6 @@
 import asyncio
 from agents import AGENTS
-from router import route_input
+from core.router import route_input
 
 async def main():
     user_input = input("Enter your request: ")

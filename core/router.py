@@ -1,4 +1,4 @@
-from llm import send_request
+from core.llm import send_request
 from agents import AGENTS
 
 async def route_input(user_input: str) -> str:

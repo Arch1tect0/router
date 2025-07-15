@@ -1,5 +1,5 @@
 # agents/joke_agent.py
-from llm import send_request
+from core.llm import send_request
 
 async def joke_agent(user_input: str) -> str:
     prompt = f"You are a funny assistant. Tell a short joke about: {user_input}"
