@@ -1,12 +1,12 @@
-from agents.joke_agent import joke_agent
 import asyncio
-import os
+from agents import AGENTS
 
 async def main():
-    
-    print("🎭 Testing Joke Agent...")
-    joke = await joke_agent("summer vacations")
-    print(joke)
+    print("Available agents:", list(AGENTS.keys()))
+    for agent_name in AGENTS:
+        print(f"\n🤖 Calling agent: {agent_name}")
+        result = await AGENTS[agent_name]("summer vacations")
+        print(result)
 
 if __name__ == "__main__":
     asyncio.run(main())
