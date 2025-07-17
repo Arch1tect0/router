@@ -1,19 +1,20 @@
 # Router
 
-Simple router for multiple AI agents.
+Simple router for multiple AI agents with LangChain.
 
 ```bash
 router/
 ├── main.py
+├── router.py
 ├── requirements.txt
 ├── .gitignore
-├── test_API_keys.py
 │
-├── core/
-│   ├── llm.py
-│   └── router.py
+├── tools/
+│   ├── test_API_keys.py
+│   └── test_llm.py
 │
 ├── agents/
 │   ├── __init__.py
-│   ├── joke_agent.py
-│   └── marketing_agent.py
+│   ├── agent_data.py
+│   └── agent_marketing.py
+
